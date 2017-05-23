@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   convert.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: douglas <douglas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dengstra <dengstra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 22:27:01 by douglas           #+#    #+#             */
-/*   Updated: 2017/05/14 11:51 by douglas          ###   ########.fr       */
+/*   Updated: 2017/05/23 15:49:08 by dengstra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,25 @@ int		ft_print_nbr(char *nbr, t_id *id)
 	nbr = (id->has_precision) ? (prec = precision(nbr, id)) : nbr;
 	(id->has_precision) ? id->f_zero = ' ' : 0;
 	len = flag_space(id, minus);
-	if ((*nbr != '0' || id->f_plus || spec == 'p' || minus) && 
-		(!ft_strchr("oOxX", spec) || (id->f_hash && (*nbr || ft_strchr("oO", spec)))))
+	if ((*nbr != '0' || id->f_plus || spec == 'p' || minus) &&
+		(!ft_strchr("oOxX", spec) ||
+		(id->f_hash && (*nbr || ft_strchr("oO", spec)))))
 	{
 		if ((id->f_plus || id->f_hash || minus) && id->f_zero == '0')
 		{
 			len += ft_putstr(get_sign(minus, id));
-			len += ft_putstrfree(padding(nbr, id ,len));
+			len += ft_putstrfree(padding(nbr, id, len));
 		}
 		// else if ((id->f_plus || id->f_hash || minus) && (id->f_minus || id->f_zero == ' '))
 		else
 		{
 			nbr = ft_strjoin(get_sign(minus, id), nbr);
-			len += ft_putstrfree(padding(nbr, id ,len));
+			len += ft_putstrfree(padding(nbr, id, len));
 			free(nbr);
 		}
 	}
 	else
-		len += ft_putstrfree(padding(nbr, id ,len));
+		len += ft_putstrfree(padding(nbr, id, len));
 	if (prec)
 		free(prec);
 	return (len);

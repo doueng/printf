@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   putwstr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: douglas <douglas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dengstra <dengstra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/12 12:10:02 by douglas           #+#    #+#             */
-/*   Updated: 2017/05/12 12:50:1 by douglas          ###   ########.fr       */
+/*   Created: 2017/05/23 13:33:14 by dengstra          #+#    #+#             */
+/*   Updated: 2017/05/23 15:31:01 by dengstra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char		*three_byte(int c)
 	if (!result)
 		exit(-1);
 	result[0] = (c >> 12 | 0b11100000) & 0b11101111;
-	result[1] = (c >> 6 | 0b10000000) &  0b10111111;
+	result[1] = (c >> 6 | 0b10000000) & 0b10111111;
 	result[2] = (c | 0b10000000) & 0b10111111;
 	return (result);
 }
@@ -102,17 +102,26 @@ size_t		ft_putwstr(wchar_t *str, t_id *id)
 	return (len);
 }
 
-size_t		ft_putbinary(char c)
+int		ft_putbinary(size_t c)
 {
-	return ft_printf("%c%c%c%c%c%c%c%c",
-		(c & 0b10000000) ? '1' : '0',
-		(c & 0b01000000) ? '1' : '0',
-		(c & 0b00100000) ? '1' : '0',
-		(c & 0b00010000) ? '1' : '0',
-		(c & 0b00001000) ? '1' : '0',
-		(c & 0b00000100) ? '1' : '0',
-		(c & 0b00000010) ? '1' : '0',
-		(c & 0b00000001) ? '1' : '0');
+	int len;
+
+	len = 0;
+	if (!c)
+		return (0);
+	len += ft_putbinary(c >> 8);
+	len += ft_printf("%c%c%c%c%c%c%c%c",
+			(c & 0b10000000) ? '1' : '0',
+			(c & 0b01000000) ? '1' : '0',
+			(c & 0b00100000) ? '1' : '0',
+			(c & 0b00010000) ? '1' : '0',
+			(c & 0b00001000) ? '1' : '0',
+			(c & 0b00000100) ? '1' : '0',
+			(c & 0b00000010) ? '1' : '0',
+			(c & 0b00000001) ? '1' : '0');
+		c = c >> 8;
+		len += write(1, " ", 1);
+	return (len);
 }
 
 int		ft_putzerochar(t_id *id)

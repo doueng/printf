@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dengstra <dengstra@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/23 13:20:35 by dengstra          #+#    #+#             */
+/*   Updated: 2017/05/23 13:44:01 by dengstra         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
@@ -80,16 +92,7 @@ By default all characters are printed until the ending null character is encount
 If the period is specified without an explicit value for precision, 0 is assumed.
 */
 
-typedef union u_types
-{
-	char	c;
-	char	*s;
-	int		d;
-	double	dd;
-	long	l;
-}			t_types;
-
-typedef struct		s_id
+typedef struct s_id
 {
 	char			f_hash;
 	char			f_zero;
@@ -116,51 +119,43 @@ typedef struct	s_list
 {
 	t_id			*id;
 	struct s_list	*next;
-}				t_list;
+}					t_list;
 
-t_id		*ft_get_flags(char *format);
-int			ft_printf(const char* format, ...);
-int			ft_printer(char *format, t_id *id, va_list ap);
-int			ft_base(size_t n, char c, t_id *id);
-char		ft_is_specifier(char c);
-int			ft_padding(size_t n_len, t_id *id);
-int			ft_print_nbr(char *nbr, t_id *id);
-int			ft_printstr(char *str, t_id *id);
-size_t		length_converter(va_list ap, int len);
-size_t		ft_putwstr(wchar_t *str, t_id *id);
-char		*ft_putwchar(wchar_t c, t_id *id);
-size_t		ft_putbinary(char c);
-size_t		ulength_converter(va_list ap, int len);
-char		*padding(char *str, t_id *id, size_t sign_len);
-int			ft_putzerochar(t_id *id);
-int			input_checker(t_id *id);
+t_id				*ft_get_flags(char *format);
+int					ft_printf(const char *format, ...);
+int					ft_printer(char *format, t_id *id, va_list ap);
+int					ft_base(size_t n, char c, t_id *id);
+char				ft_is_specifier(char c);
+int					ft_padding(size_t n_len, t_id *id);
+int					ft_print_nbr(char *nbr, t_id *id);
+int					ft_printstr(char *str, t_id *id);
+size_t				length_converter(va_list ap, int len);
+size_t				ft_putwstr(wchar_t *str, t_id *id);
+char				*ft_putwchar(wchar_t c, t_id *id);
+int					ft_putbinary(size_t c);
+size_t				ulength_converter(va_list ap, int len);
+char				*padding(char *str, t_id *id, size_t sign_len);
+int					ft_putzerochar(t_id *id);
+int					input_checker(t_id *id);
 
-char	*ft_strjoinfree(int free1, char *s1, int free2, char *s2);
-int				ft_putstrfree(char *str);
-char	*ft_strndup(const char *src, size_t len);
-int		ft_isdigit(char c);
-char	*ft_strcat(char *dest, char *src);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-void	*ft_arrayrev(void *array, size_t size, size_t len);
-char	*ft_strdup(const char *src);
-void	*ft_memalloc(size_t size);
-char	*ft_strcpy(char *dest, const char *src);
-char	*ft_strrev(char *str);
-void	*ft_memset(void *b, int c, size_t len);
-void	*ft_memmove(void *dst, const void *src, size_t len);
-char	*ft_strnew(size_t size);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_itoa(long long n);
-char	*ft_itoa_base(size_t value, char *base);
-char	**ft_strsplit(char const *s, char c);
-t_list	*ft_lstnew(void const *content, size_t content_size);
-char	*ft_strchr(const char *s, int c);
-void	ft_lstadd(t_list **alst, t_list *new);
-void	ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-int		ft_putstr(const char *str);
-int		ft_putchar(char c);
-void	ft_putnbr(int nb);
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
+char				*ft_strjoinfree(int free1, char *s1, int free2, char *s2);
+int					ft_putstrfree(char *str);
+char				*ft_strndup(const char *src, size_t len);
+int					ft_isdigit(char c);
+char				*ft_strcat(char *dest, char *src);
+void				*ft_memcpy(void *dst, const void *src, size_t n);
+char				*ft_strdup(const char *src);
+void				*ft_memalloc(size_t size);
+void				*ft_memset(void *b, int c, size_t len);
+void				*ft_memmove(void *dst, const void *src, size_t len);
+char				*ft_strnew(size_t size);
+char				*ft_strjoin(char const *s1, char const *s2);
+char				*ft_itoa(long long n);
+char				*ft_itoa_base(size_t value, char *base);
+char				*ft_strchr(const char *s, int c);
+int					ft_putstr(const char *str);
+int					ft_putchar(char c);
+int					ft_atoi(const char *str);
+size_t				ft_strlen(const char *str);
 
 #endif

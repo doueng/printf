@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: douglas <douglas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dengstra <dengstra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 22:27:44 by douglas           #+#    #+#             */
-/*   Updated: 2017/05/22 11:31:21 by douglas          ###   ########.fr       */
+/*   Updated: 2017/05/23 15:24:15 by dengstra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	function_caller(char c, size_t num, t_id *id, va_list ap)
 			ft_printstr(va_arg(ap, char*), id) : 0;
 	len += (ft_strchr("xXoO", c)) ? ft_base(num, c, id) : 0;
 	len += (c == 'p') ? ft_base((long)va_arg(ap, void*), c, id) : 0;
-	len += (c == 'b') ? ft_putbinary(va_arg(ap, int)) : 0;
+	len += (c == 'b') ? ft_putbinary(va_arg(ap, size_t)) : 0;
 	len += (c == 'S' || (c == 's' && id->length == l))
 			? ft_putwstr(va_arg(ap, wchar_t*), id) : 0;
 	if (tmp)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: douglas <douglas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dengstra <dengstra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 22:27:54 by douglas           #+#    #+#             */
-/*   Updated: 2017/05/21 20:46:57 by douglas          ###   ########.fr       */
+/*   Updated: 2017/05/23 15:47:24 by dengstra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@
 // #include	<stddef.h>
 #include 	<locale.h>
 #include	<stdlib.h>
-#include	"libft.h"
+#include	"./libft/libft.h"
 #include	<limits.h>
 #define		MAX_INT 2147483647
 int		ft_printf(const char* format, ...);
 
 int		main(void)
 {
+
+	ft_printf("%b", 1);
 
 // 	ft_printf("{%05.s}\n", 0);
 // 	printf("{%05.s}", 0);
